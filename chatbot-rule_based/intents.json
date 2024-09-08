@@ -8,7 +8,7 @@
     },
     {
       "tag": "goodbye",
-      "patterns": ["Goodbye", "See you later", "Bye", "Talk to you later", "I have to go", "See ya"],
+      "patterns": ["Goodbye", "See you later", "Bye", "Talk to you later", "I have to go", "Bye for now"],
       "responses": ["Take care of yourself!", "Goodbye! Feel free to reach out anytime.", "Stay strong, talk to you soon!"],
       "context_set": ""
     },
@@ -97,35 +97,47 @@
       "context_set": ""
     },
     {
-      "tag": "greeting",
-      "patterns": ["Hi", "Hello", "Hey", "Hi there", "Hello there"],
-      "responses": ["Hello! How are you feeling today?", "Hi there! How can I support you today?", "Hello! I'm here if you need to talk."],
-      "context_set": "greeting"
-    },
-    {
       "tag": "feeling_good",
       "patterns": ["I'm good", "I'm feeling good", "Good", "I'm fine", "Doing well", "I'm okay"],
       "responses": ["That's great to hear! What would you like to talk about today?", "I'm glad you're feeling good. Anything I can help with?", "Awesome! Let me know how I can assist you today."],
-      "context_filter": "greeting",
       "context_set": "feeling_good"
     },
     {
       "tag": "neutral_response",
       "patterns": ["Ok", "Okay", "Sure", "Alright"],
       "responses": ["Is there anything else on your mind?", "Feel free to let me know if there's something you'd like to talk about.", "I'm here whenever you're ready."],
-      "context_filter": ["greeting", "feeling_good"]
+      "context_filter": ["feeling_good"]
     },
     {
-      "tag": "thank_you",
-      "patterns": ["Thank you", "Thanks", "Thanks a lot", "Thank you so much", "I appreciate it", "Thanks for your help", "You're amazing", "Thanks for listening"],
-      "responses": ["You're very welcome!", "I'm glad I could help.", "I'm always here for you.", "I'm happy you're feeling better.", "You're welcome! Remember, I'm here whenever you need me."],
-      "context_set": "gratitude"
+      "tag": "grief",
+      "patterns": ["I'm grieving", "I've lost someone", "I'm heartbroken", "I miss someone", "I'm dealing with loss"],
+      "responses": ["I'm so sorry you're going through this. I'm here to listen if you want to talk.", "Grief can be overwhelming, but it's okay to feel how you're feeling. I'm here if you need to share.", "I'm really sorry for your loss. Talking about it might help, whenever you're ready."]
     },
     {
-      "tag": "goodbye",
-      "patterns": ["Goodbye", "Bye", "See you later", "Talk to you later", "I have to go", "Bye for now"],
-      "responses": ["Goodbye! Feel free to reach out anytime.", "Take care! I'll be here if you need me.", "Talk to you soon! Stay strong."],
-      "context_set": ""
+      "tag": "anger",
+      "patterns": ["I'm feeling angry", "I'm really mad", "I can't control my anger", "I'm furious", "I get angry easily"],
+      "responses": ["It's okay to feel angry sometimes. Do you want to talk about what triggered it?", "Let's take a deep breath together and try to calm down. I'm here for you.", "Anger can be tough to handle, but you're not alone. Let's find a way to cool down."]
+    }, {
+      "tag": "mindfulness",
+      "patterns": ["Help me relax", "I need to calm down", "How do I practice mindfulness?", "Can you guide me through meditation?", "How do I focus on the present?"],
+      "responses": ["Let's try a simple breathing exercise together. Breathe in deeply, and then slowly exhale. Repeat a few times.", "Mindfulness is about being present in the moment. Take a deep breath, focus on how your body feels, and let go of any thoughts.", "Meditation can help you calm down. Would you like me to guide you through a short meditation?"]
+    },
+    {
+      "tag": "ask_for_help",
+      "patterns": ["I need help", "How do I get help?", "I think I need therapy", "Should I talk to a professional?", "Where can I find help?"],
+      "responses": ["It's a big step to ask for help, and I'm really proud of you for considering it.", "Talking to a mental health professional can be really beneficial. Would you like some tips on how to find one?", "If you're feeling like you need extra support, seeking therapy or counseling can be a great idea."]
+    },
+    {
+      "tag": "coping_strategies",
+      "patterns": ["How do I cope?", "Give me some coping strategies", "What can I do to feel better?", "How do I handle stress?", "How do I deal with my emotions?"],
+      "responses": ["Everyone copes differently. Some ideas are journaling, talking to a friend, or taking a break to relax.", "Stress can be overwhelming. Have you tried deep breathing or taking a short walk to clear your head?", "Emotions are tough to deal with. Sometimes doing something creative or physical can help shift your mood."]
+    },
+    {
+      "tag": "neutral_response",
+      "patterns": ["No", "Nothing else", "I'm done", "That's all"],
+      "responses": ["It seems like you're all set for now. If you need anything later, I'm here for you.", "Okay, if you think of anything else, don't hesitate to reach out. Have a great day!", "Got it. Remember, you can always come back if you need to talk more."],
+      "context_filter": ["feeling_good", "greeting"]
     }
+    
   ]
 }
