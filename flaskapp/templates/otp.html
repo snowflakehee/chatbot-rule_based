@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h2>OTP Verification</h2>
+            <p id="otp-message">Please enter the OTP:</p>
+            <div class="form-group">
+                <input type="text" id="otp-input" placeholder="Enter OTP" required>
+            </div>
+            <button type="button" onclick="verifyOTP()">Verify OTP</button>
+            <p id="verification-result"></p>
+            <a href="index.html">Back to Register</a>
+        </div>
+    </div>
+    <script src="dist/otp.bundle.js"></script>
+</body>
+</html>
