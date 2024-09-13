@@ -10,6 +10,9 @@
     <div class="container">
         <div class="form-wrapper">
             <h2>Register</h2>
+            {% if msg %}
+        <p style="color:red;">{{ msg }}</p>
+    {% endif %}
             <form id="registration-form" method="POST" action="">
                 <div class="form-group">
                     <label for="name">Name:</label>
