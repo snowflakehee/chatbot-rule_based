@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTER</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='emailotp.css') }}">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h2>Register</h2>
+            <form id="registration-form" method="POST" action="">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </form>
+            
+            <!-- OTP section (Initially hidden) -->
+			 <div class="form-group">
+            <div class="otpverify" id="otp-section" style="display: none;">
+                <input type="text" id="otp_inp" placeholder="Enter the OTP sent to your Email..." required>
+                
+            </div><a href="amigo.html">
+                <button class="btn" id="otp-btn">Verify</button>
+            </a>
+            
+			</div>
+
+
+            <!-- Send OTP Button -->
+            <button class="btn"  onclick="sendOTP()">Send OTP</button>
+            <a href="login.html">Already registered? Login here</a>
+        </div>
+    </div>
+	<script src="emailotp.js"></script>
+
+    
+</body>
+</html>
+

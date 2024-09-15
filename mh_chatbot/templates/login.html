@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h2>Login</h2>
+            {% if msg %}
+    <p class="error-message">{{ msg }}</p>
+    {% endif %}
+            <form id="login-form" method="POST" action="{{ url_for('login') }}">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <a href="{{url_for('amigo')}}">
+                <button type="submit">Login</button>
+                </a>
+            </form>
+            <script>
+                function validatePassword() {
+                  var password = document.getElementById("password").value;
+                  var errorMessage = document.getElementById("error-message");
+              
+                  // Password strength requirements: at least 8 characters, one uppercase, one lowercase, one digit, one special character
+                  var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]{8,}$/;
+              
+                  if (!passwordRegex.test(password)) {
+                    errorMessage.textContent = "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.";
+                    return false;  // Prevent form submission
+                  }
+              
+                  errorMessage.textContent = "";  // Clear the error message
+                  return true;  // Allow form submission
+                }
+              </script>
+            <a href="{{url_for('index')}}">Not registered? Register here</a>
+        </div>
+    </div>
+</body>
+</html>

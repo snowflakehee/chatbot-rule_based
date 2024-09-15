@@ -1,0 +1,143 @@
+{
+    "intents": [
+      {
+        "tag": "greeting",
+        "patterns": ["Hi", "Hello", "Good day", "Hey", "Greetings", "Hi there", "Hello there"],
+        "responses": ["Hello! How are you feeling today?", "Hi there! I'm here to listen.", "Hello! How can I support you today?"],
+        "context_set": ""
+      },
+      {
+        "tag": "goodbye",
+        "patterns": ["Goodbye", "See you later", "Bye", "Talk to you later", "I have to go", "Bye for now"],
+        "responses": ["Take care of yourself!", "Goodbye! Feel free to reach out anytime.", "Stay strong, talk to you soon!"],
+        "context_set": ""
+      },
+      {
+        "tag": "feeling_down",
+        "patterns": ["I'm feeling sad", "I'm not okay", "I feel down", "I'm unhappy", "I feel depressed", "I'm really upset", "I feel hopeless"],
+        "responses": ["I'm really sorry you're feeling this way. I'm here to listen if you want to talk.", "Would you like to share more? Sometimes talking can help.", "It's okay to feel down sometimes. I'm here whenever you're ready to share more."],
+        "context_set": ""
+      },
+      {
+        "tag": "anxiety",
+        "patterns": ["I'm feeling anxious", "I have anxiety", "I'm worried", "I'm stressed out", "I'm feeling overwhelmed", "I feel nervous", "I'm scared"],
+        "responses": ["It sounds like you're going through a tough time. Let's take a moment to breathe together.", "Do you want to talk about what's making you feel anxious?", "It's okay to feel anxious. Let's focus on some calming techniques together."],
+        "context_set": ""
+      },
+      {
+        "tag": "positive_reinforcement",
+        "patterns": ["I'm doing okay", "I feel better", "I'm feeling good", "I had a good day", "I'm feeling hopeful", "Things are looking up"],
+        "responses": ["That's great to hear! I'm happy you're feeling better.", "Keep up the positive energy! You're doing amazing.", "It's wonderful that you're feeling hopeful. Remember, you're strong!"],
+        "context_set": ""
+      },
+      {
+        "tag": "motivation",
+        "patterns": ["I need motivation", "I'm struggling to stay positive", "I need encouragement", "I'm feeling unmotivated", "I don't know what to do", "I feel stuck", "I'm losing hope"],
+        "responses": ["You are capable of more than you know. Take one step at a time.", "It's okay to feel stuck sometimes. Keep going, you've got this!", "Remember, it's okay to take breaks. Don't give up!"],
+        "context_set": ""
+      },
+      {
+        "tag": "self_care",
+        "patterns": ["How do I take care of myself?", "Give me self-care tips", "What are some self-care practices?", "How can I feel better?", "What can I do for self-care?", "I need to relax"],
+        "responses": ["Try to do something you enjoy, like reading, walking, or spending time with loved ones.", "Take small steps toward self-care. Even a few minutes of mindfulness or journaling can help.", "Self-care is about finding balance. Make sure you're getting enough rest, eating well, and doing things that bring you joy."],
+        "context_set": ""
+      },
+      {
+        "tag": "forget_sadness",
+        "patterns": ["How can I stop feeling sad?", "Help me forget my sadness", "I want to feel better", "What can I do to distract myself?", "How do I move on from sadness?"],
+        "responses": ["Sometimes, a distraction can help. How about we try focusing on something you enjoy?", "Let's shift your focus. Do you want to talk about something you love, like a hobby or interest?", "Have you tried doing something fun like watching a show, going for a walk, or listening to music? It might help brighten your mood.", "Sometimes, helping others or doing something creative can help take your mind off the sadness. What would you like to try?"],
+        "context_set": ""
+      },
+      {
+        "tag": "loneliness",
+        "patterns": ["I feel lonely", "I'm alone", "I have no one to talk to", "I feel isolated", "I feel abandoned"],
+        "responses": ["I'm really sorry you're feeling this way. You're not alone, and I'm here to listen.", "Loneliness can be tough, but remember that you matter and are important.", "Sometimes reaching out to a friend or doing something creative can help. Would you like to talk about it?"],
+        "context_set": ""
+      },
+      {
+        "tag": "panic_attack",
+        "patterns": ["I think I'm having a panic attack", "I'm panicking", "I'm overwhelmed and can't breathe", "My chest is tight", "I feel like I can't breathe", "I feel like I'm losing control"],
+        "responses": ["I'm really sorry you're feeling this way. Try to focus on your breathing. Inhale slowly, then exhale.", "I'm here with you. Let's take it one step at a time. Focus on a slow, deep breath.", "You're not alone. Focus on something around you, like a nearby object. I'm here to help you through this."],
+        "context_set": ""
+      },
+      {
+        "tag": "sleep_issues",
+        "patterns": ["I can't sleep", "I have trouble sleeping", "I haven't slept well", "I'm having nightmares", "I keep waking up at night", "I'm exhausted but can't rest"],
+        "responses": ["I'm sorry you're having trouble sleeping. Have you tried creating a relaxing bedtime routine?", "Sometimes calming activities like reading or listening to soothing music can help before bed.", "Try to avoid screens before bed and create a peaceful sleep environment. I'm here for you if you want to talk more."],
+        "context_set": ""
+      },
+      {
+        "tag": "gratitude",
+        "patterns": ["What should I be grateful for?", "I want to practice gratitude", "How can I be more grateful?", "Help me think positively"],
+        "responses": ["Sometimes, even small things like a beautiful sunset or a kind word can be sources of gratitude.", "Try to think of three things you're grateful for today, no matter how small.", "Gratitude helps shift your focus. Would you like to share something you're thankful for?"],
+        "context_set": ""
+      },
+      {
+        "tag": "exercise",
+        "patterns": ["How can exercise help me feel better?", "Can exercise help my mental health?", "What are good exercises for mental health?", "Should I work out to feel better?"],
+        "responses": ["Exercise can help boost your mood by releasing endorphins. Even a short walk can help.", "Physical activity, like yoga or stretching, can also help with mental clarity and stress relief.", "Exercise doesn't have to be intense. Start with something small, like walking or simple stretches."],
+        "context_set": ""
+      },
+      {
+        "tag": "meditation",
+        "patterns": ["How can I meditate?", "What is meditation?", "How can meditation help me?", "Can meditation help with anxiety?", "Teach me how to meditate"],
+        "responses": ["Meditation can help calm your mind. Start by sitting comfortably and focusing on your breath.", "There are different types of meditation, like mindfulness or guided meditation. Would you like to try one?", "Start by closing your eyes, taking deep breaths, and focusing on each inhale and exhale."],
+        "context_set": ""
+      },
+      {
+        "tag": "crisis_hotline",
+        "patterns": ["I need urgent help", "I need someone to talk to right now", "I need a crisis hotline", "Help me now", "I'm in a crisis"],
+        "responses": ["If you're in crisis, it's important to reach out to a professional or crisis hotline. Here's a number you can call: [insert hotline number].", "Please reach out to a professional. You're not alone, and help is available.", "I'm here to support you, but it's important to speak to a professional if you're in immediate need."],
+        "context_set": ""
+      },
+      {
+        "tag": "thank_you",
+        "patterns": ["Thank you", "Thanks", "Thanks a lot", "Thank you so much", "I appreciate it", "Thanks for your help", "You're amazing", "Thanks for listening", "Thanks, I feel better"],
+        "responses": ["You're very welcome!", "I'm glad I could help.", "I'm always here for you.", "I'm happy you're feeling better.", "You're welcome! Remember, I'm here whenever you need me."],
+        "context_set": ""
+      },
+      {
+        "tag": "feeling_good",
+        "patterns": ["I'm good", "I'm feeling good", "Good", "I'm fine", "Doing well", "I'm okay"],
+        "responses": ["That's great to hear! What would you like to talk about today?", "I'm glad you're feeling good. Anything I can help with?", "Awesome! Let me know how I can assist you today."],
+        "context_set": "feeling_good"
+      },
+      {
+        "tag": "neutral_response",
+        "patterns": ["Ok", "Okay", "Sure", "Alright"],
+        "responses": ["Is there anything else on your mind?", "Feel free to let me know if there's something you'd like to talk about.", "I'm here whenever you're ready."],
+        "context_filter": ["feeling_good"]
+      },
+      {
+        "tag": "grief",
+        "patterns": ["I'm grieving", "I've lost someone", "I'm heartbroken", "I miss someone", "I'm dealing with loss"],
+        "responses": ["I'm so sorry you're going through this. I'm here to listen if you want to talk.", "Grief can be overwhelming, but it's okay to feel how you're feeling. I'm here if you need to share.", "I'm really sorry for your loss. Talking about it might help, whenever you're ready."]
+      },
+      {
+        "tag": "anger",
+        "patterns": ["I'm feeling angry", "I'm really mad", "I can't control my anger", "I'm furious", "I get angry easily"],
+        "responses": ["It's okay to feel angry sometimes. Do you want to talk about what triggered it?", "Let's take a deep breath together and try to calm down. I'm here for you.", "Anger can be tough to handle, but you're not alone. Let's find a way to cool down."]
+      }, {
+        "tag": "mindfulness",
+        "patterns": ["Help me relax", "I need to calm down", "How do I practice mindfulness?", "Can you guide me through meditation?", "How do I focus on the present?"],
+        "responses": ["Let's try a simple breathing exercise together. Breathe in deeply, and then slowly exhale. Repeat a few times.", "Mindfulness is about being present in the moment. Take a deep breath, focus on how your body feels, and let go of any thoughts.", "Meditation can help you calm down. Would you like me to guide you through a short meditation?"]
+      },
+      {
+        "tag": "ask_for_help",
+        "patterns": ["I need help", "How do I get help?", "I think I need therapy", "Should I talk to a professional?", "Where can I find help?"],
+        "responses": ["It's a big step to ask for help, and I'm really proud of you for considering it.", "Talking to a mental health professional can be really beneficial. Would you like some tips on how to find one?", "If you're feeling like you need extra support, seeking therapy or counseling can be a great idea."]
+      },
+      {
+        "tag": "coping_strategies",
+        "patterns": ["How do I cope?", "Give me some coping strategies", "What can I do to feel better?", "How do I handle stress?", "How do I deal with my emotions?"],
+        "responses": ["Everyone copes differently. Some ideas are journaling, talking to a friend, or taking a break to relax.", "Stress can be overwhelming. Have you tried deep breathing or taking a short walk to clear your head?", "Emotions are tough to deal with. Sometimes doing something creative or physical can help shift your mood."]
+      },
+      {
+        "tag": "neutral_response",
+        "patterns": ["No", "Nothing else", "I'm done", "That's all"],
+        "responses": ["It seems like you're all set for now. If you need anything later, I'm here for you.", "Okay, if you think of anything else, don't hesitate to reach out. Have a great day!", "Got it. Remember, you can always come back if you need to talk more."],
+        "context_filter": ["feeling_good", "greeting"]
+      }
+      
+    ]
+  }

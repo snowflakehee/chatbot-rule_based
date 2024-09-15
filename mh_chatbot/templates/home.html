@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amigo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='homestyle.css') }}">
+</head>
+<body>
+    <header>
+        <figure class="logo">
+            <h1>Amigo</h1>
+        </figure>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="">For Organizations</a></li>
+                <li><a href="">Research</a></li>
+                <li><a href="">Contact us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="carousel next">
+            <div class="list">
+                <article class="item other_1">
+                    <div class="main-content" style="background-color: rgb(47, 46, 46);">
+                        <div class="content1">
+                            <h2>Personalized Care</h2>
+                            <p class="hhh">Tailored to your needs</p>
+                            <p class="description">
+                                Amigo learns from your interactions to provide personalized support and recommendations. Whether you're dealing with stress, anxiety, or just need someone to talk to, our chatbot adapts to your unique situation and preferences.
+                            </p>
+                            <a href="{{ url_for('index') }}">
+                                <button class="addToCard">
+                                    Begin your journey now
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <figure class="image">
+                        <img src="{{ url_for('static', filename='images/1726252938901.png') }}" alt="Personalized care">
+                        <figcaption>Personalized care</figcaption>
+                    </figure>
+                </article>
+                <article class="item active">
+                    <div class="main-content" style="background-color: #5d5dd5;">
+                        <div class="content2">
+                            <h2>24/7 Support</h2>
+                            <p class="hhh">Always here for you</p>
+                            <p class="description">
+                                Amigo provides round-the-clock support, ensuring you have someone to talk to whenever you need it. Our AI-powered chatbot is designed to offer empathetic listening and evidence-based coping strategies, anytime, anywhere.
+                            </p>
+                            <a href="{{ url_for('index') }}">
+                                <button class="addToCard">
+                                    Start Chatting Now
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <figure class="image">
+                        <img src="{{ url_for('static', filename='images/1726253030060.png') }}" alt="24/7 Support">
+                        <figcaption>Accessible mental health support, day and night</figcaption>
+                    </figure>
+                </article>
+            </div>
+            <div class="arrows">
+                <button id="prev">&lt;</button>
+                <button id="next">&gt;</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let next = document.getElementById('next');
+        let prev = document.getElementById('prev');
+        let carousel = document.querySelector('.carousel');
+        let items = document.querySelectorAll('.carousel .item');
+        let countItem = items.length;
+        let active = 1;
+        let other_1 = 0;
+
+        next.onclick = () => {
+            carousel.classList.remove('prev');
+            carousel.classList.add('next');
+            active = active + 1 >= countItem ? 0 : active + 1;
+            other_1 = active - 1 < 0 ? countItem - 1 : active - 1;
+            changeSlider();
+        }
+        prev.onclick = () => {
+            carousel.classList.remove('next');
+            carousel.classList.add('prev');
+            active = active - 1 < 0 ? countItem - 1 : active - 1;
+            other_1 = active + 1 >= countItem ? 0 : active + 1;
+            changeSlider();
+        }
+        const changeSlider = () => {
+            let itemOldActive = document.querySelector('.carousel .item.active');
+            if (itemOldActive) itemOldActive.classList.remove('active');
+
+            let itemOldOther_1 = document.querySelector('.carousel .item.other_1');
+            if (itemOldOther_1) itemOldOther_1.classList.remove('other_1');
+
+            items[active].classList.add('active');
+            items[other_1].classList.add('other_1');
+
+            clearInterval(autoPlay);
+            autoPlay = setInterval(() => {
+                next.click();
+            }, 6000);
+        }
+        let autoPlay = setInterval(() => {
+            next.click();
+        }, 6000);
+    </script>
+</body>
+</html>

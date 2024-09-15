@@ -1,0 +1,106 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0d0d0d;
+    color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 95vw;
+    max-width: 400px;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 1px 50px rgba(245, 242, 243, 0.5);
+}
+
+.form-wrapper {
+    padding: 20px;
+}
+
+.form-wrapper h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+#otp_inp {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #f0f0f0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    background-color: #262626;
+    color: #f0f0f0;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;  /* Ensure transition for box-shadow */
+}
+
+/* Focus effect with glow */
+.form-group input:focus {
+    outline: none;
+    border-color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);  /* Add box-shadow for glow effect */
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3760f4;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #f2f3f6;
+    transform: scale(1.05);
+    color: black;
+}
+
+#otp-btn {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+a {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    color: #3760f4;
+    text-decoration: none;
+    list-style: none;
+}
+
+a:hover {
+    color: #275df2;
+}
+
+
+
+
+
