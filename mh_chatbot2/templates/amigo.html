@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amigo Chatbot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navbar styles */
+        header {
+            width: 100%;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            box-sizing: border-box;
+        }
+
+        header .logo h1 {
+            font-size: 24px;
+            color: white;
+            margin: 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        header nav ul li {
+            display: inline-block;
+        }
+
+        header nav ul li a {
+            color: #faf4f4;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 18px;
+            white-space: nowrap;
+        }
+
+        header nav ul li a:hover {
+            color:#275df2;
+        }
+
+        /* Main container */
+        .main-container {
+            display: flex;
+            width: 100%;
+            height: calc(100vh - 70px);
+            margin-top: 70px;
+        }
+
+        /* History sidebar */
+        .history-sidebar {
+            width: 0;
+            height: 100%;
+            background-color: #262626;
+            transition: width 0.3s ease-in-out;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .history-sidebar.open {
+            width: 300px;
+        }
+
+        .history-item {
+            padding: 10px 20px;
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .history-item:hover {
+            background-color: #333;
+        }
+
+        /* Chat container */
+        .chat-container {
+            flex-grow: 1;
+            height: 100%;
+            background-color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        #chatbox {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #275df2 #1a1a1a;
+            border-bottom: 1px solid #333;
+        }
+
+        #chatbox::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #chatbox::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        #chatbox::-webkit-scrollbar-thumb {
+            background-color: blue;
+            border-radius: 10px;
+            border: 2px solid #1a1a1a;
+        }
+
+        .message {
+            display: inline-block;
+            max-width: 70%;
+            min-width: 20%;
+            margin-bottom: 15px;
+            padding: 12px 18px;
+            border-radius: 20px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.3s forwards;
+            clear: both;
+        }
+
+        .user-message {
+            background-color: #3760f4;
+            color: #fff;
+            align-self: flex-end;
+            float: right;
+            border-bottom-right-radius: 0;
+        }
+
+        .bot-message {
+            background-color: rgb(46, 46, 46);
+            color: #fff;
+            align-self: flex-start;
+            float: left;
+            border-bottom-left-radius: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bot-message::after {
+            content: '▋';
+            position: absolute;
+            right: -10px;
+            bottom: 0px;
+            color: #fff;
+            animation: blink 0.7s infinite;
+        }
+
+        .no-cursor::after {
+            display: none;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .input-area {
+            display: flex;
+            padding: 20px;
+            background-color: #262626;
+        }
+
+        #input {
+            flex-grow: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            background-color: #fcf9f9;
+            color: #0b0b0b;
+            font-size: 16px;
+        }
+
+        #send, #history-toggle, #new-chat {
+            background-color: #3760f4;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin-left: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 20px;
+        }
+
+        #send:hover, #history-toggle:hover, #new-chat:hover {
+            background-color: #275df2;
+            transform: scale(1.1);
+        }
+        #history-toggle{
+            margin-left:-10px ;
+            margin-right: 10px;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 850px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            header nav ul {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            header nav ul li a {
+                font-size: 16px;
+            }
+
+            .history-sidebar.open {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            header .logo h1 {
+                font-size: 20px;
+            }
+
+            header nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            header nav ul li a {
+                font-size: 14px;
+            }
+
+            .history-sidebar.open {
+                width: 100%;
+            }
+
+            .chat-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="logo">
+            <h1>Amigo</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{url_for('home')}}">Logout</a></li>
+                <li><a href="{{url_for('feedback')}}">Feedback</a></li>
+                <li><a href="{{url_for('quiz')}}">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main container -->
+    <div class="main-container">
+        <!-- History sidebar -->
+        <div class="history-sidebar" id="history-sidebar">
+            <!-- History items will be dynamically added here -->
+        </div>
+
+        <!-- Chatbot Container -->
+        <div class="chat-container">
+            <div id="chatbox"></div>
+            <div class="input-area">
+                <button id="history-toggle">≡</button>
+                <input type="text" id="input" placeholder="Type a message...">
+                <button id="send">➤</button>
+                <button id="new-chat">+</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatbox = document.getElementById('chatbox');
+        const input = document.getElementById('input');
+        const send = document.getElementById('send');
+        const newChat = document.getElementById('new-chat');
+        const historySidebar = document.getElementById('history-sidebar');
+        const historyToggle = document.getElementById('history-toggle');
+        let chatHistory = [];
+        let allChats = [];
+
+        function addMessage(content, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+            
+            if (!isUser) {
+                simulateTyping(content, messageDiv);
+            } else {
+                messageDiv.textContent = content;
+            }
+
+            chatbox.appendChild(messageDiv);
+            chatbox.scrollTop = chatbox.scrollHeight;
+
+            // Add to current chat history
+            chatHistory.push({ content, isUser });
+            updateHistorySidebar();
+        }
+
+        function simulateTyping(content, messageDiv) {
+            let i = 0;
+            const interval = setInterval(() => {
+                messageDiv.textContent += content.charAt(i);
+                i++;
+                chatbox.scrollTop = chatbox.scrollHeight;
+                if (i === content.length) {
+                    clearInterval(interval);
+                    messageDiv.classList.add('no-cursor');
+                }
+            }, 50);
+        }
+
+        function updateHistorySidebar() {
+            historySidebar.innerHTML = '';
+            allChats.forEach((chat, chatIndex) => {
+                const historyItem = document.createElement('div');
+                historyItem.classList.add('history-item');
+                historyItem.textContent = `Chat ${chatIndex + 1}`;
+
+                historyItem.addEventListener('click', () => loadConversation(chatIndex));
+                historySidebar.appendChild(historyItem);
+            });
+        }
+
+        function loadConversation(chatIndex) {
+            chatbox.innerHTML = '';
+            const chatToLoad = allChats[chatIndex];
+            chatToLoad.forEach(message => {
+                addMessage(message.content, message.isUser);
+            });
+        }
+
+        function startNewChat() {
+            if (chatHistory.length > 0) {
+                allChats.push([...chatHistory]);
+            }
+            chatHistory = [];
+            chatbox.innerHTML = '';
+            updateHistorySidebar();
+        }
+
+        historyToggle.addEventListener('click', () => {
+            historySidebar.classList.toggle('open');
+        });
+
+        send.addEventListener('click', function() {
+            const message = input.value.trim();
+            if (message) {
+                addMessage(message, true);
+                input.value = '';
+
+                fetch('http://localhost:5000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.response && typeof data.response === 'string') {
+                        setTimeout(() => addMessage(data.response, false), 500);
+                    } else {
+                        setTimeout(() => addMessage('No response', false), 500);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    setTimeout(() => addMessage('Error occurred', false), 500);
+                });
+            }
+        });
+
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                send.click();
+            }
+        });
+
+        newChat.addEventListener('click', function() {
+            startNewChat();
+        });
+    </script>
+</body>
+</html>

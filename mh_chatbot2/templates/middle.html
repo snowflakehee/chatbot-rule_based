@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot middle</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: black;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+        #progressLine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background-color: #3760f4;
+            transition: width 1.5s ease-in-out; 
+            width: 0;
+        }
+        #text {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: black;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: opacity 0.5s ease-in-out;
+            max-width: 80%;
+            text-align: center;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            border-color: white;
+            background-color: #3760f4;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #6286e9;
+            border-color: #275df2;
+        }
+        button:focus {
+            border-color: #275df2;
+        }
+    </style>
+</head>
+<body>
+    <div id="progressLine"></div>
+    <div id="text" aria-live="polite">Welcome to Amigo</div>
+    <button id="changeButton" aria-label="Change Text">Next</button>
+
+    <script>
+        const text = document.getElementById('text');
+        const button = document.getElementById('changeButton');
+        const progressLine = document.getElementById('progressLine');
+        let clickCount = 0;
+        const texts = [
+            "A next Geneartional Conversation AI for Mental Health",
+            "Amigo is based on our proprietary dataset,which makes it significantly more helpful and safe than other chatbots",
+            "Amigo is not intended to be a substitute for in-person assistance,medical intervention,crisis service,or medical or clinical advice",
+            "Explain to Amigo what you want to get out of this session",
+            "Answering question thoughtfully can help you think about things that have never occured to you before",
+            "Lets Talk"
+        ];
+        const buttonLabels = [
+            "Next",
+            "Next",
+            "Next",
+            "Next",
+            "Next",
+            "Start chatting"
+        ];
+
+        function updateProgressLine() {
+            const progress = ((clickCount + 1) / texts.length) * 100;
+            progressLine.style.width = `${progress}%`;
+        }
+
+        button.addEventListener('click', () => {
+            if (clickCount >= texts.length - 1) {
+                updateProgressLine();
+                setTimeout(() => {
+                    window.location.href = 'amigo.html';
+                }, 2000);                 return;
+            }
+            
+            text.style.opacity = '0';
+            updateProgressLine();
+            clickCount++;
+            
+            setTimeout(() => {
+                text.textContent = texts[clickCount];
+                text.style.opacity = '1';
+                button.textContent = buttonLabels[clickCount];
+            }, 500);
+        });
+    </script>
+</body>
+</html>

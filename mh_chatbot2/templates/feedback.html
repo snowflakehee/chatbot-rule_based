@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amigo Chatbot Feedback</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .feedback-container {
+            background-color: #1a1a1a;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            margin-top: 50px;
+            border-radius: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+             box-shadow: 0 2px 15px rgba(245, 242, 243, 0.5);
+            border-color: white;
+            box-shadow: 0 2px 15px rgba(245, 242, 243, 0.5);
+            border-color: white;
+            
+
+        }
+        h1 {
+            text-align: center;
+            color: #3760f4;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #262626;
+            color: #f0f0f0;
+        }
+        button {
+            background-color: #3760f4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #275df2;
+        }
+        .hidden {
+            display: none;
+        }
+        .thank-you {
+            text-align: center;
+            font-size: 20px;
+            color: #3760f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <h1>Amigo Chatbot Feedback</h1>
+        <div id="feedbackForm">
+            <div class="question">
+                <label>1)Was the chatbot helpful?</label>
+                <label>
+                    <input type="radio" name="helpful" value="yes"> Yes
+                </label>
+                <label>
+                    <input type="radio" name="helpful" value="no"> No
+                </label>
+                <label>2)How easy was it to interact with the chatbot?</label>
+                <label>
+                    <input type="radio" name="helpful" value="yes"> Very Easy
+                </label>
+                <label>
+                    <input type="radio" name="helpful" value="no"> Easy
+                </label>
+                <label>
+                    <input type="radio" name="helpful" value="yes"> Neutral
+                </label>
+                <label>
+                    <input type="radio" name="helpful" value="no"> Difficulty
+                </label>
+                <label>3) How relevant and helpful were the chatbot’s responses to your needs?</label>
+                <label>
+                    <input type="radio" name="helpful" value="yes"> Extremely relevant
+                </label>
+                <label>
+                    <input type="radio" name="helpful" value="no"> Relevant
+                </label>
+                <label>
+                    <input type="radio" name="helpful" value="yes"> Neutral
+                </label>
+                <label>
+                    <input type="radio" name="helpful" value="no"> Difficulty
+                </label>
+                <label>4) Did you feel that your privacy was respected throughout the conversation?
+                </label>
+                <label>
+                    <input type="radio" name="helpful" value="yes"> Yes
+                </label>
+                <label>
+                    <input type="radio" name="helpful" value="no"> No
+                </label>
+               
+                <label>5) Would you recommend the chatbot to someone else who may need mental health support?
+
+                </label>
+                <label>
+                    <input type="radio" name="helpful" value="yes"> Yes
+                </label>
+                <label>
+                    <input type="radio" name="helpful" value="no"> Maybe
+                </label>
+                              <label>
+                    <input type="radio" name="helpful" value="no"> No
+                </label>
+            </div>
+            <div id="additionalFeedback" class="question hidden">
+                <label for="feedbackText">How can we improve?</label>
+                <input type="text" id="feedbackText" placeholder="Please provide your feedback">
+            </div>
+            <button id="submitFeedback">Submit Feedback</button>
+        </div>
+        <div id="thankYouMessage" class="thank-you hidden">
+            Thank you for your feedback!
+            <a href="{{ url_for('home') }}">Go to Home</a>
+        </div>
+    </div>
+
+    <script>
+        const feedbackForm = document.getElementById('feedbackForm');
+        const additionalFeedback = document.getElementById('additionalFeedback');
+        const helpfulRadios = document.getElementsByName('helpful');
+        const submitButton = document.getElementById('submitFeedback');
+        const thankYouMessage = document.getElementById('thankYouMessage');
+
+        helpfulRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'no') {
+                    additionalFeedback.classList.remove('hidden');
+                } else {
+                    additionalFeedback.classList.add('hidden');
+                }
+            });
+        });
+
+        submitButton.addEventListener('click', () => {
+            feedbackForm.classList.add('hidden');
+            thankYouMessage.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

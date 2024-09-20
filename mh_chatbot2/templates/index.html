@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        let otp_val = '';
+
+        function sendOTP() {
+            const emailInput = document.getElementById('email');
+            const otpSection = document.getElementById('otp-section');
+            const sendOtpBtn = document.getElementById('send-otp-btn');
+
+            // Generate a random OTP
+            otp_val = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+
+            // Prepare the email body
+            let emailbody = `<h2>Your OTP is </h2>${otp_val}`;
+
+            // Retrieve the email address
+            let email = emailInput.value;
+
+            // Send OTP to the email
+            Email.send({
+                SecureToken : "c2aeb6bc-1981-4b21-8f90-af4fb7ec6c4b",
+                To : email,
+                From : "2022cs0001@svce.ac.in",
+                Subject : "Email OTP Verification",
+                Body : emailbody,
+            }).then(
+                message => {
+                    if (message === "OK") {
+                        alert("OTP sent to: " + email);
+                        
+                        // Hide the Send OTP button
+                        sendOtpBtn.style.display = 'none';
+                        
+                        // Show the OTP verification section
+                        otpSection.style.display = "block";
+                        
+                        const otp_inp = document.getElementById('otp_inp');
+                        const otp_btn = document.getElementById('otp-btn');
+
+                        // Add OTP verification functionality
+                        otp_btn.addEventListener('click', () => {
+                            if (otp_inp.value === otp_val) {
+                                alert("Email address verified...");
+                                
+                                // Hide the Verify button and show the Register button
+                                otp_btn.style.display = 'none';
+                                document.getElementById('register-btn').style.display = 'block';
+                            } else {
+                                alert("Invalid OTP");
+                            }
+                        });
+                    } else {
+                        alert("Failed to send OTP: " + message);
+                    }
+                }
+            );
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h2>Register</h2>
+            {% if msg %}
+                <p style="color:red;">{{ msg }}</p>
+            {% endif %}
+            <form id="registration-form" method="POST" action="">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <p id="error-message" style="color:red;"></p> <!-- Error message display -->
+                </div>
+                
+                <!-- Send OTP button -->
+                <button type="button" class="btn" id="send-otp-btn" onclick="sendOTP()">Send OTP</button>
+
+
+                <!-- OTP section (Initially hidden) -->
+                <div class="form-group" id="otp-section" style="display: none;">
+                    <input type="text" id="otp_inp" placeholder="Enter the OTP sent to your Email..." required>
+                    <button type="button" class="btn" id="otp-btn">Verify</button>
+                </div>
+
+                <!-- Register button will be displayed only after OTP is verified -->
+                <button type="submit" id="register-btn" style="display: none;">Register</button>
+            </form>
+
+            <a href="login.html">Already registered? Login here</a>
+        </div>
+    </div>
+</body>
+</html>
+
