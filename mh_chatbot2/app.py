@@ -162,7 +162,7 @@ def login():
         else:
             msg = 'Incorrect email or password. Try again.'
 
-    return render_template('login.html', msg=msg)
+    return render_template('amigo.html', msg=msg)
 
 # Route for Amigo Chatbot (Protected)
 @app.route('/amigo.html')

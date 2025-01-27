@@ -1,4 +1,7 @@
 import os
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
+os.environ["PYTHONIOENCODING"] = "utf-8"
 
 # Create the directory if it doesn't exist
 if not os.path.exists('model'):
@@ -15,7 +18,10 @@ import nltk
 from nltk.stem import WordNetLemmatizer
    # Ensure that 'punkt' is downloaded for tokenization
 nltk.download('wordnet') # Download 'wordnet' for lemmatization
-nltk.data.path.append('C:/Users/Lenovo/AppData/Roaming/nltk_data')
+nltk.download('punkt_tab')
+nltk.download('punkt', download_dir='C:\\Users\\cowar\\AppData\\Roaming\\nltk_data')
+nltk.data.path.append('C:\\Users\\cowar\\AppData\\Roaming\\nltk_data')
+
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Activation, Dropout
 from tensorflow.keras.optimizers import SGD
@@ -23,7 +29,7 @@ from tensorflow.keras.optimizers import SGD
 lemmatizer = WordNetLemmatizer()
 
 # Ensure the file name is correct ('intents.json' or 'intense.json')
-intents = json.load(open('intents.json'))  # Adjust file name if needed
+intents = json.load(open('mh_chatbot2\intents.json'))  # Adjust file name if needed
 
 words = []
 classes = []
